@@ -7,7 +7,7 @@ import (
 )
 
 func GetLines(filename string) []string {
-	file, err := os.Open("./day1.txt")
+	file, err := os.Open(filename)
 	if err != nil {
 		log.Fatal(err)
 	}
