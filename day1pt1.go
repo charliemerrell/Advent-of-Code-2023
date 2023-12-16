@@ -1,0 +1,32 @@
+package main
+
+import (
+	"aoc2023/lines"
+	"fmt"
+	"strconv"
+	"unicode"
+	"unicode/utf8"
+)
+
+func main() {
+	lines := lines.GetLines("./day1.txt")
+	sum := 0
+	for i := 0; i < len(lines); i++ {
+		line := lines[i]
+		digitStart := '_'
+		digitEnd := '0'
+		for j := 0; j < len(line); j++ {
+			c, _ := utf8.DecodeRuneInString(line[j:])
+			if unicode.IsDigit(c) {
+				if digitStart == '_' {
+					digitStart = c
+				}
+				digitEnd = c
+			}
+		}
+		bothDigits := string(digitStart) + string(digitEnd)
+		num, _ := strconv.Atoi(bothDigits)
+		sum += num
+	}
+	fmt.Println(sum)
+}
