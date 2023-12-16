@@ -2,13 +2,12 @@ package main
 
 import (
 	"aoc2023/lines"
-	"fmt"
 	"strconv"
 	"unicode"
 	"unicode/utf8"
 )
 
-func main() {
+func Day1Pt1() int {
 	lines := lines.GetLines("./day1.txt")
 	sum := 0
 	for i := 0; i < len(lines); i++ {
@@ -28,5 +27,5 @@ func main() {
 		num, _ := strconv.Atoi(bothDigits)
 		sum += num
 	}
-	fmt.Println(sum)
+	return sum
 }
