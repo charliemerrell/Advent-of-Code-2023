@@ -1,9 +1,7 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 func main() {
-	fmt.Println(Day9Pt2())
+	fmt.Println(Day10Pt1())
 }
