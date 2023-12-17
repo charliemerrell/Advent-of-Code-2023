@@ -10,7 +10,7 @@ func Day10Pt1() int {
 	tile1b := tile{lines[s.y][s.x+1], s.y, s.x + 1}
 	tile2b := tile{lines[s.y][s.x-1], s.y, s.x - 1}
 	distance := 1
-	for true {
+	for {
 		tmp1 := next(lines, tile1a, tile1b)
 		tile1a, tile1b = tile1b, tmp1
 		tmp2 := next(lines, tile2a, tile2b)
