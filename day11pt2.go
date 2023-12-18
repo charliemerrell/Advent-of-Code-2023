@@ -4,7 +4,7 @@ import (
 	"aoc2023/lines"
 )
 
-func Day11Pt1() int {
+func Day11Pt2() uint64 {
 	grid := lines.GetLines("./day11.txt")
 	galaxies := []galaxy{}
 	galaxyRows := make([]bool, len(grid))
@@ -18,7 +18,7 @@ func Day11Pt1() int {
 			}
 		}
 	}
-	sum := 0
+	sum := uint64(0)
 	for i, g1 := range galaxies {
 		for j, g2 := range galaxies {
 			if j <= i {
@@ -29,7 +29,7 @@ func Day11Pt1() int {
 			for y := yTop; y < yBot; y++ {
 				sum++
 				if !galaxyRows[y] {
-					sum++
+					sum += 999999
 				}
 			}
 			xRight := max(g1.x, g2.x)
@@ -37,7 +37,7 @@ func Day11Pt1() int {
 			for x := xLeft; x < xRight; x++ {
 				sum++
 				if !galaxyCols[x] {
-					sum++
+					sum += 999999
 				}
 			}
 		}
@@ -45,7 +45,3 @@ func Day11Pt1() int {
 	return sum
 }
 
-type galaxy struct {
-	y int
-	x int
-}
