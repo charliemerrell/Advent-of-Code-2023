@@ -3,5 +3,5 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(Day10Pt1())
+	fmt.Println(Day10Pt2Stolen())
 }
