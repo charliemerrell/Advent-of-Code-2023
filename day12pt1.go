@@ -25,6 +25,9 @@ func Day12Pt1() int {
 func count(springs string, nums []int) int {
 	for _, c := range springs {
 		if c == '?' {
+			if !isValidSoFar(springs, nums) {
+				return 0
+			}
 			str1 := strings.Replace(springs, "?", ".", 1)
 			str2 := strings.Replace(springs, "?", "#", 1)
 			return count(str1, nums) + count(str2, nums)
@@ -66,4 +69,29 @@ func isValid(springs string, nums []int) bool {
 		i++
 	}
 	return i == len(nums)
+}
+
+func isValidSoFar(springs string, nums []int) bool {
+	contigDmg := 0
+	i := 0
+	for _, c := range springs {
+		if c == '?' {
+			break
+		}
+		if c == '#' {
+			contigDmg++
+		} else { 
+			if contigDmg != 0 {
+				if i == len(nums) {
+					return false
+				}
+				if nums[i] != contigDmg {
+					return false
+				}
+				contigDmg = 0
+				i++
+			}
+		}
+	}
+	return true
 }
