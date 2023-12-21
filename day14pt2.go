@@ -2,14 +2,13 @@ package main
 
 import (
 	"aoc2023/lines"
-	"fmt"
 )
 
 func Day14Pt2() int {
 	lines := lines.GetLines("./day14.txt")
 	grid := make([][]byte, len(lines))
 	for y := range lines {
-		grid[y] = make([]byte, len(lines[y])) 
+		grid[y] = make([]byte, len(lines[y]))
 		for x := range lines[y] {
 			grid[y][x] = lines[y][x]
 		}
@@ -36,17 +35,4 @@ func Day14Pt2() int {
 		}
 	}
 	return sum
-}
-
-func rotateRight90(grid [][]int) {
-	n 
-	for y := range grid {
-		for x := range grid[y] {
-			tmp := grid[y][x];
-			grid[y][x]=grid[x][n-y-1];
-			grid[x][n-y-1]=grid[n-y-1][n-x-1];
-			grid[n-y-1][n-x-1]=grid[n-x-1][y];
-			grid[n-x-1][y]=tmp;
-		}
-	}
 }
