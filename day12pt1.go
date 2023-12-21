@@ -9,8 +9,29 @@ import (
 
 func Day12Pt1() int {
 	lines := lines.GetLines("./day12.txt")
+	const cores = 16
+	n := len(lines)
+	nPerThread := n / cores
+	ch := make(chan int)
+	for c := 0; c < cores; c++ {
+		start := c * nPerThread
+		end := start + nPerThread
+		if c == cores - 1 {
+			end = n
+		}
+		go getSum(lines, start, end, ch)
+	}
 	sum := 0
-	for _, line := range lines {
+	for c := 0; c < cores; c++ {
+		sum += <-ch
+	}
+	return sum
+}
+
+func getSum(lines []string, start, end int, c chan int) {
+	sum := 0
+	for i := start; i < end; i++ {
+		line := lines[i]
 		split := strings.Split(line, " ")
 		springs, numStr := split[0], strings.Split(split[1], ",")
 		nums := make([]int, len(numStr))
@@ -19,7 +40,7 @@ func Day12Pt1() int {
 		}
 		sum += count(springs, nums)
 	}
-	return sum
+	c <- sum
 }
 
 func count(springs string, nums []int) int {
